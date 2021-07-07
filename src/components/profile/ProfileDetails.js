@@ -19,13 +19,12 @@ const ProfileDetails = ({profiles, tagList}) => {
         }
     }
     const changeTag = (e) =>{
-        e.stopPropagation(); 
-    e.preventDefault();
-     setTag(e.target.value)
+         e.preventDefault();
+        setTag(e.target.value)
     }
     const handleToggle = (e) =>{
-        e.stopPropagation(); 
         setToggle(!toggle)
+        console.log(toggle)
     }
     return (
 
@@ -36,6 +35,8 @@ const ProfileDetails = ({profiles, tagList}) => {
           </div>
           <div className="details-wrap">
               <h1>{firstName} {lastName}</h1>  
+
+              <div className="details-InnerWrap">
               <p>Email: {email}</p>
               <p>Company: {company}</p>
               <p>Skill: {skill}</p>
@@ -43,32 +44,37 @@ const ProfileDetails = ({profiles, tagList}) => {
               {
                   toggle && <div className="test-score-wrap">
                     {
-                       grades.length ? (
+                       grades.length &&
                            grades.map((grade, i) =>{
                                return(
                                   <div className="test-score" key={new Date()}>
                                   <span className="test__title">Test {i}</span>
                                   <span className="test__score">{grade}%</span>
                               </div>
-                               )
-                           })
-                       ) : null 
+                            )
+                         })
                     }
                 </div>
                  
               }
               <div className="tags" id={id}>
-                  {
-                      tagList.map((tag, i )=>   <span key={i} className="tag">{tag.tagName}</span>)
-                  }
+                  { 
+                    tagList.map((tag, i )=>   <span key={i} className="tag">{tag.tagName}</span>) 
+                   }
              </div>
              <div className="add-tag">
-                <input type="text" className="add__tag" placeholder="Add a tag"
-                onChange={changeTag} value={tag}  onKeyPress={handleSubmit}
+                 <form action="">
+                 <input type="text" className="add__tag" placeholder="Add a tag" id={id}
+                 onChange={changeTag} value={tag}  onKeyPress={handleSubmit}
                 />
-    </div>
+                 </form>
+                </div>
+              </div>
+            
           </div>
-          <div className="icon-wrap"><span className="pointer" id= {id} onClick={handleToggle}><i className="fas fa-plus"></i></span></div>
+          <div className="icon-wrap">
+              <span className="pointer" id= {id} onClick={handleToggle}><i className={toggle ? 'fas fa-minus' : 'fas fa-plus'}></i></span>
+              </div>
          </div>
      </div>
     )

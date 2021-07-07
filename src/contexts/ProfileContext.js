@@ -19,12 +19,12 @@ const ProfileContextProvider = (props) => {
   const  handleSearchTag =(val) =>{}
 
   const handleAddTags = (tag) =>{
-  let profiles = [...profile]
-  let tagProfile = profiles.find(data=> +data.id === +tag.id);
-  tagProfile.tags= tagProfile.tags || []
-  tagProfile.tags.push(tag)
-  setProfile(profiles)
-}
+    let profiles = [...profile];
+    let tagProfile = profiles.find((data) => +data.id === +tag.id);
+    tagProfile.tags = tagProfile.tags || [];
+    tagProfile.tags.push(tag);
+    setProfile(profiles);
+  }
 const randomId = () =>{
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
