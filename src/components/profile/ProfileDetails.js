@@ -3,7 +3,7 @@ import { ProfileContext } from '../../contexts/ProfileContext';
 
 const ProfileDetails = ({profiles, tagList}) => {
     const {id, firstName, lastName, email, pic, company, grades, skill} = profiles;
-    const {randomId, handleAddTags} = useContext(ProfileContext)
+    const {handleAddTags} = useContext(ProfileContext)
     const [tag, setTag] = useState('');
     const [toggle, setToggle] = useState(false);
  
@@ -22,9 +22,8 @@ const ProfileDetails = ({profiles, tagList}) => {
          e.preventDefault();
         setTag(e.target.value)
     }
-    const handleToggle = (e) =>{
+    const handleToggle = () =>{
         setToggle(!toggle)
-        console.log(toggle)
     }
     return (
 
@@ -46,12 +45,12 @@ const ProfileDetails = ({profiles, tagList}) => {
                     {
                        grades.length &&
                            grades.map((grade, i) =>{
-                               return(
-                                  <div className="test-score" key={new Date()}>
-                                  <span className="test__title">Test {i}</span>
-                                  <span className="test__score">{grade}%</span>
-                              </div>
-                            )
+                               return (
+                                 <div className="test-score" key={i}>
+                                   <span className="test__title">Test {i}</span>
+                                   <span className="test__score">{grade}%</span>
+                                 </div>
+                               );
                          })
                     }
                 </div>
@@ -63,11 +62,9 @@ const ProfileDetails = ({profiles, tagList}) => {
                    }
              </div>
              <div className="add-tag">
-                 <form action="">
                  <input type="text" className="add__tag" placeholder="Add a tag" id={id}
                  onChange={changeTag} value={tag}  onKeyPress={handleSubmit}
                 />
-                 </form>
                 </div>
               </div>
             

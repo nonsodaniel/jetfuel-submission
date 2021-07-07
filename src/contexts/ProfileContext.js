@@ -10,12 +10,18 @@ const ProfileContextProvider = (props) => {
      return  fetch(`https://api.hatchways.io/assessment/students`)
   }
 
-  const handleSearchName =(val) =>{
-    if (val === '') return data
-    let searchData  = profile.filter(data =>  data.firstName.toLowerCase().includes(val.toLowerCase()) ||
-       data.lastName.toLowerCase().includes(val.toLowerCase()))
-       setProfile(searchData)
-    }
+  const handleSearchName = (val) => {
+    let searchData =
+      val === ""
+        ? profile
+        : profile.filter((data) => {
+            data.firstName.toLowerCase().includes(val.toLowerCase()) ||
+              data.lastName.toLowerCase().includes(val.toLowerCase());
+            console.log();
+          });
+    setProfile(searchData);
+    console.log("val", val, searchData);
+  };
   const  handleSearchTag =(val) =>{}
 
   const handleAddTags = (tag) =>{
@@ -25,16 +31,6 @@ const ProfileContextProvider = (props) => {
     tagProfile.tags.push(tag);
     setProfile(profiles);
   }
-const randomId = () =>{
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < 10; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
-   return result;
-}
 
   useEffect(() => {
     fetchData()
@@ -43,7 +39,9 @@ const randomId = () =>{
   }, []);
 
   return (
-    <ProfileContext.Provider value={{ profile,randomId, handleSearchName, handleSearchTag, handleAddTags }}>
+    <ProfileContext.Provider
+      value={{ profile, handleSearchName, handleSearchTag, handleAddTags }}
+    >
       {props.children}
     </ProfileContext.Provider>
   );
