@@ -85,6 +85,9 @@
     font-size: 40px;
     color: #808080d6;
 }
+.icon-wrap i:hover{
+    color: #000;
+}
 .search-wrap{
     display: flex;
     flex-direction: column;
