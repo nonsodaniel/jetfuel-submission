@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import {ProfileContext} from '../../contexts/ProfileContext'
 const ProfileSearch = () => {
-    const { setSearchNameVal, handleSearchTag } = useContext(ProfileContext);
+    const { setSearchNameVal, setSearchTagVal } = useContext(ProfileContext);
     const handleName =({target}) =>{
       setSearchNameVal(target.value);
       }
       const handleTag =({target}) =>{
-        handleSearchTag(target.value)
+      setSearchTagVal(target.value);
       }
     return (
       <div className="search-wrap" data-testid="profile_search">
