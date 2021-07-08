@@ -120,6 +120,12 @@ input:focus{
     font-weight: 300;
 }
 
+.no-data{
+    text-align: center;
+    margin-top: 12rem;
+    font-size: 2rem;
+}
+
 
 
     @media (max-width: 1024px){
