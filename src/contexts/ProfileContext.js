@@ -10,17 +10,17 @@ const ProfileContextProvider = (props) => {
      return  fetch(`https://api.hatchways.io/assessment/students`)
   }
 
-  const filterName = (profile, val) => {
-    let searchData =
-      val === ""
-        ? profile
-        : profile.filter((data) => {
-            data.firstName.toLowerCase().includes(val.toLowerCase()) ||
-              data.lastName.toLowerCase().includes(val.toLowerCase());
-          });
-    return searchData;
-  };
-  const  handleSearchTag =(val) =>{}
+const filterName = (profile, val) => {
+  return  val === ""
+      ? profile
+      : profile.filter((data) => {
+        let {firstName, lastName} = data
+        return   data.firstName.toLowerCase().includes(val.toLowerCase()) ||
+            data.lastName.toLowerCase().includes(val.toLowerCase());
+        });
+};
+
+
 
   const handleAddTags = (tag) =>{
     let profiles = [...profile];
@@ -41,7 +41,7 @@ const ProfileContextProvider = (props) => {
       value={{
         profile: filterName(profile, searchNameVal),
         setSearchNameVal,
-        handleSearchTag,
+        
         handleAddTags,
       }}
     >
